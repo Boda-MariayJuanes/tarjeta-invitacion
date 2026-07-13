@@ -1920,7 +1920,7 @@
         >
           Escríbenos directamente por WhatsApp 💬
         </p>
-        <div class="rsvp-dead">📅 Antes del 15 de junio de 2026.</div>
+        <div class="rsvp-dead" id="rsvp-dead-el">📅 Antes del 15 de junio de 2026.</div>
         <div class="rsvp-btns">
           <a
             class="btn-pill"
@@ -2185,6 +2185,12 @@
         "nora-y-george":            "Nora y George Squely Morales",
         "cami-y-marcela":           "Cami González y Marcela Torres",
         "andres-vasquez":           "Andrés Vásquez",
+        "julio-y-marta":            "Julio y Marta",
+      };
+
+      // Mapa slug → fecha límite de confirmación personalizada
+      var FECHAS = {
+        "julio-y-marta": "📅 Antes del 20 de julio de 2026.",
       };
       (function () {
         var params = new URLSearchParams(window.location.search);
@@ -2195,6 +2201,13 @@
         var nombre = INVITADOS[slug] || decodeURIComponent(slug);
         var nameEl = document.getElementById("guest-name-el");
         if (nameEl) nameEl.textContent = nombre;
+
+        // Fecha límite personalizada (si aplica)
+        var fecha = FECHAS[slug];
+        if (fecha) {
+          var fechaEl = document.getElementById("rsvp-dead-el");
+          if (fechaEl) fechaEl.textContent = fecha;
+        }
 
         // Sección de honor (si aplica)
         var roles = ROLES[slug];
